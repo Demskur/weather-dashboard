@@ -1,9 +1,9 @@
-const { app, BrowserWindow, Menu } = require("electron");
-// Para crear rutas
-const url = require("url");
+import MainWindow from "./assets/MainWindow.js";
+const { app } = require("electron");
 // Para obtener de rutas
 const path = require("path");
 
+//Funcion que permite la recarga activa de cambios al browser lanzado en el entorno dev
 if (process.env.NODE_ENV !== "production") {
   require("electron-reload")(__dirname, {
     electron: path.join(__dirname, "../node_modules", "bin", "electron"),
@@ -12,28 +12,6 @@ if (process.env.NODE_ENV !== "production") {
 
 let mainWindow;
 
-const templateMenu = [
-  {
-    label: "Archivo",
-    submenu: [
-      {
-        label: "Nuevo",
-        accelerator: "Ctrl+N",
-        click() {},
-      },
-    ],
-  },
-];
-
 app.on("ready", () => {
-  mainWindow = new BrowserWindow({});
-  mainWindow.loadURL(
-    url.format({
-      pathname: path.join(__dirname, "./views/index.html"),
-      protocol: "file",
-      slashes: true,
-    })
-  );
-  const mainMenu = Menu.buildFromTemplate(templateMenu);
-  Menu.setApplicationMenu(mainMenu);
+  mainWindow = new MainWindow();
 });
