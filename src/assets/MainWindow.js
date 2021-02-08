@@ -1,23 +1,32 @@
 const { BrowserWindow } = require("electron");
-// Para crear rutas
-const url = require("url");
 
-class MainWindow {
-  constructur() {
+export class MainWindow {
+  constructor() {
     this.start();
   }
 
   start() {
     console.log("creando mainwindow");
-    let mainWindow = new BrowserWindow({});
-    mainWindow.loadURL(
-      url.format({
-        pathname: path.join(__dirname, "../views/index.html"),
-        protocol: "file",
-        slashes: true,
-      })
-    );
+    const mainWindow = new BrowserWindow({
+      width: 800,
+      height: 600,
+      //show en false para que no se muestre enseguida
+      show: false,
+      backgroundColor: "#ffffff",
+      useContentSize: true,
+      webPreferences: {
+        nodeIntegration: true,
+      },
+    });
+    mainWindow.loadFile("../views/index.html");
+    mainWindow.webContents.executeJavaScript(`    
+    console.log("probando");  
+    `);
+    // Se mostrara la ventana solo cuando se haya renderizado todo
+    mainWindow.once("ready-to-show", () => {
+      mainWindow.show();
+    });
+
     return mainWindow;
   }
 }
-export default MainWindow;
