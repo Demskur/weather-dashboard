@@ -5,7 +5,7 @@ import { MainWindow } from "./MainWindow";
 import { MenuBar } from "./MenuBar";
 
 //habilita recarga activa de electron en entorno dev
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV === "development") {
   require("electron-reload")(__dirname, {
     electron: path.join(__dirname, "../node_modules", "bin", "electron"),
   });

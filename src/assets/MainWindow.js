@@ -18,7 +18,8 @@ export class MainWindow {
         nodeIntegration: true,
       },
     });
-    mainWindow.loadFile("../views/index.html");
+    //al cargar el html, este debe empezar por el nombre de la carpeta que contiene todo el codigo
+    mainWindow.loadFile("src/views/index.html");
     mainWindow.webContents.executeJavaScript(`    
     console.log("probando");  
     `);
