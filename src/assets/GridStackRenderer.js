@@ -1,7 +1,13 @@
-import { GridStack } from "../../node_modules/gridstack/dist/gridstack-h5.js"; //"../../node_modules/gridstack/dist/gridstack-h5";
+//De esta manera cargo todoooo segun https://www.npmjs.com/package/gridstack#demo-and-examples
+const { GridStack } = require("gridstack");
+require("../../node_modules/gridstack/dist/h5/gridstack-dd-native.js");
+//Otra forma mas resumida
+//const GridStack = require("../../node_modules/gridstack/dist/gridstack-h5.js");
+let grid;
+let items;
 
 function loadGridstack() {
-  let grid = GridStack.init({
+  grid = GridStack.init({
     acceptWidgets: true,
     dragIn: ".newWidget", // class that can be dragged from outside
     dragInOptions: {
@@ -13,7 +19,7 @@ function loadGridstack() {
     removable: "#trash", // drag-out delete class
     removeTimeout: 100,
   });
-  let items = [
+  items = [
     { x: 0, y: 0, w: 4, h: 2, content: "1" },
     {
       x: 4,
@@ -48,4 +54,8 @@ function loadGridstack() {
   grid.load(items);
 }
 
-loadGridstack();
+try {
+  loadGridstack();
+} catch (e) {
+  console.log(e);
+}
