@@ -1,4 +1,4 @@
-const { Menu } = require("electron");
+const Menu = require("electron");
 const templateMenu = [
   {
     label: "Archivo",
@@ -11,9 +11,11 @@ const templateMenu = [
     ],
   },
 ];
+class MenuBar {
+  constructor() {}
 
-export default class MenuBar {
   buildMenu() {
+    debugger;
     const mainMenu = Menu.buildFromTemplate(templateMenu);
     Menu.setApplicationMenu(mainMenu);
   }

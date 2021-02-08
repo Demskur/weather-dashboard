@@ -2,9 +2,9 @@
   "name": "weather-dashboard",
   "version": "1.0.0",
   "description": "weather-dashboard, sera de escritorio con electronjs y tambien utilizara react",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "start": "electron src/main.js"
+    "start": "electron src/assets/index.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,11 @@
   },
   "homepage": "https://github.com/Demskur/weather-dashboard#readme",
   "devDependencies": {
-    "electron": "^11.2.3",
-    "electron-reload": "^1.5.0"
+    "electron": "^12.0.0-beta.22",
+    "electron-reload": "^1.5.0",
+    "electron-debug": "^3.2.0"
+  },
+  "dependencies": {   
+    "esm": "^3.2.25"
   }
 }

@@ -2,17 +2,22 @@ const { BrowserWindow } = require("electron");
 // Para crear rutas
 const url = require("url");
 
-export default class MainWindow {
-  constructur() {}
+class MainWindow {
+  constructur() {
+    this.start();
+  }
 
   start() {
-    mainWindow = new BrowserWindow({});
+    console.log("creando mainwindow");
+    let mainWindow = new BrowserWindow({});
     mainWindow.loadURL(
       url.format({
-        pathname: path.join(__dirname, "./views/index.html"),
+        pathname: path.join(__dirname, "../views/index.html"),
         protocol: "file",
         slashes: true,
       })
     );
+    return mainWindow;
   }
 }
+export default MainWindow;
