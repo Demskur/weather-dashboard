@@ -1,4 +1,5 @@
-const { BrowserWindow } = require("electron");
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
 
 export class MainWindow {
   constructor() {
@@ -16,6 +17,11 @@ export class MainWindow {
       useContentSize: true,
       webPreferences: {
         nodeIntegration: true,
+        enableRemoteModule: false,
+        //process.env.NODE_ENV !== "production" ? true : false,
+        //Evita que los objetos globales puedan ser modificados desde scripts que se ejecuten en el renderer, tiene que estar en true
+        contextIsolation: false,
+        //preload: path.join(__dirname, "../views/GridStackRenderer.js"),
       },
     });
     //al cargar el html, este debe empezar por el nombre de la carpeta que contiene todo el codigo

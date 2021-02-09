@@ -1,21 +1,27 @@
 "use stric";
-const { app } = require("electron");
+require("./database");
+const { app, ipcMain } = require("electron");
 const path = require("path");
+const fs = require("fs");
 import { MainWindow } from "./MainWindow";
 import { MenuBar } from "./MenuBar";
 
 //habilita recarga activa de electron en entorno dev
-if (process.env.NODE_ENV === "development") {
+
+if (process.env.NODE_ENV !== "production") {
   require("electron-reload")(__dirname, {
-    electron: path.join(__dirname, "../node_modules", "bin", "electron"),
+    electron: path.join(__dirname, "../../node_modules", ".bin", "electron"),
   });
 }
+// se almacenan en let para que el garbage colletor no me cierre nada
+let window;
+let menu;
 
 function createWindow() {
-  const window = new MainWindow();
-  const menu = new MenuBar();
+  window = new MainWindow();
+  menu = new MenuBar();
 }
-
+//llamara a la funcion cuando termine de cargar electron
 app.whenReady().then(createWindow);
 
 app.on("window-all-closed", () => {
